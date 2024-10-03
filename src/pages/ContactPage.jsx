@@ -8,6 +8,8 @@ export default function ContactPage() {
         <br />
         <label>email</label>
         <input type="email" />
+        <label >message</label>
+        <textarea name="" id=""></textarea>
       </form>
     </>
   );
