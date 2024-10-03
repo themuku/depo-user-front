@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    align-items: center;
+}
+
+.link {
+    color: white;
+}
+
+.active-link {
+    color: #69b1ff;
+}
+
+.active-link::after {
+    content: "";
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #69b1ff;
+    width: 100%;
+}
