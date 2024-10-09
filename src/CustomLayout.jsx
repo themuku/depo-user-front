@@ -8,13 +8,7 @@ export default function CustomLayout() {
   return (
     <Layout>
       <Header />
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
-        <Outlet />
-      </Content>
+      <Outlet />
       <Footer />
     </Layout>
   );

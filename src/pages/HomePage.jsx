@@ -1,7 +1,20 @@
+import { Layout } from "antd";
+import HeroSection from "../components/home/HeroSection";
+import FeaturedProducts from "../components/home/FeaturedProducts";
+
+const { Content } = Layout;
+
 export default function HomePage() {
   return (
     <>
-      <h1>Home page</h1>
+      <HeroSection />
+      <Content
+        style={{
+          padding: "0 48px",
+        }}
+      >
+        <FeaturedProducts />
+      </Content>
     </>
   );
 }

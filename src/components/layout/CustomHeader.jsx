@@ -28,9 +28,16 @@ export default function CustomHeader() {
       style={{
         display: "flex",
         alignItems: "center",
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
       }}
     >
-      <div className="demo-logo" />
+      <a href="#">
+        <div className="demo-logo">
+          <img src="/logo.png" alt="Website logo" />
+        </div>
+      </a>
       <Menu
         theme="dark"
         mode="horizontal"
@@ -39,6 +46,7 @@ export default function CustomHeader() {
           flex: 1,
           minWidth: 0,
         }}
+        items={[]}
       />
       <div className="links">
         <NavLink
