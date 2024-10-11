@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Divider, Flex, Typography } from "antd";
+import { Col, Divider, Flex, Grid, Row, Typography } from "antd";
 import ProductCard from "../ui/ProductCard";
 import axios from "axios";
-const { Title } = Typography;
+import { Link } from "react-router-dom";
+const { Title, Text } = Typography;
 
-const LazyProductCard = React.lazy(ProductCard);
+// const LazyProductCard = React.lazy(ProductCard);
 
-export default function FeaturedProducts() {
+export default function NewProducts() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [products, setProducts] = useState([]);
@@ -21,10 +22,7 @@ export default function FeaturedProducts() {
         if (data.length <= 0) {
           setIsError(true);
         } else if (data.length > 4) {
-          const sortedProducts = data
-            .toSorted((a, b) => b.stockAmount - a.stockAmount)
-            .slice(0, 4);
-          setProducts(sortedProducts);
+          setProducts(data.slice(0, 12));
         } else {
           setProducts(data);
         }
@@ -37,20 +35,37 @@ export default function FeaturedProducts() {
       });
   }, []);
   return (
-    <section className="featured-products-sections">
-      <Title>Featured Products</Title>
+    <section className="new-products-sections">
+      <Flex align="center" justify="space-between">
+        <Title
+          style={{
+            marginBottom: 0,
+          }}
+        >
+          New Products
+        </Title>
+        <Link to="/products">
+          <Text className="all-products-link">See all products &rarr;</Text>
+        </Link>
+      </Flex>
       <Divider />
-      <Flex justify="space-between">
+      <Row gutter={[24, 24]} justify="space-between">
         {!isError ? (
           products.map((product) => (
-            <ProductCard {...product} isLoading={isLoading} key={product.id} />
+            <Col>
+              <ProductCard
+                {...product}
+                isLoading={isLoading}
+                key={product.id}
+              />
+            </Col>
           ))
         ) : (
           <Title type="secondary" level={3}>
             There is no featured products available yet!
           </Title>
         )}
-      </Flex>
+      </Row>
       <Divider />
     </section>
   );

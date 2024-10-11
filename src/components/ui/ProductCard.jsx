@@ -1,4 +1,5 @@
 import { Card, Typography } from "antd";
+import { formatDescription } from "../../utils/format-description";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -21,7 +22,7 @@ export default function ProductCard({
       }
       loading={isLoading}
     >
-      <Meta title={productName} description={description} />
+      <Meta title={productName} description={formatDescription(description)} />
       <Text className="product-price" strong>
         ${price}
       </Text>
