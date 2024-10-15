@@ -30,7 +30,7 @@ export default function CustomHeader() {
         alignItems: "center",
         position: "sticky",
         top: 0,
-        zIndex: 1,
+        zIndex: 10,
       }}
     >
       <a href="#">

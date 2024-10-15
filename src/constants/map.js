@@ -1,0 +1,2 @@
+export const JET_SCHOOL_POSITION = [40.3994, 49.8554];
+export const GANJLIK_POSITION = [40.4006, 49.85265];
