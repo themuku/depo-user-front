@@ -6,6 +6,8 @@ const { Title } = Typography;
 
 const LazyProductCard = React.lazy(ProductCard);
 
+const URL = import.meta.env.VITE_API_URL;
+
 export default function FeaturedProducts() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -14,7 +16,7 @@ export default function FeaturedProducts() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("https://depo-back.vercel.app/products/all")
+      .get(`${URL}/all`)
       .then((response) => {
         const { data } = response;
 

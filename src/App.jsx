@@ -6,6 +6,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import Layout from "./CustomLayout";
 import ErrorPage from "./ErrorPage";
+import { productsLoader } from "./pages/ProductsPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ProductsPage />,
+            loader: productsLoader,
           },
           {
             path: ":productName",

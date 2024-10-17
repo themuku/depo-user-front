@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const { Title, Text } = Typography;
 
-// const LazyProductCard = React.lazy(ProductCard);
+const URL = import.meta.env.VITE_API_URL;
 
 export default function NewProducts() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function NewProducts() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("https://depo-back.vercel.app/products/all")
+      .get(`${URL}/all`)
       .then((response) => {
         const { data } = response;
 
@@ -34,6 +34,7 @@ export default function NewProducts() {
         setIsError(true);
       });
   }, []);
+
   return (
     <section className="new-products-sections">
       <Flex align="center" justify="space-between">
@@ -52,7 +53,7 @@ export default function NewProducts() {
       <Row gutter={[24, 24]} justify="space-between">
         {!isError ? (
           products.map((product) => (
-            <Col>
+            <Col key={product.id}>
               <ProductCard
                 {...product}
                 isLoading={isLoading}
