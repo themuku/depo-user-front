@@ -1,11 +1,17 @@
 import { createSlice } from "zustand-slices";
 
+const emptyObj = {
+  cart: [],
+  totalQuantity: 0,
+};
+
+const initialState = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : emptyObj;
+
 export const cartSlice = createSlice({
   name: "cart",
-  value: {
-    cart: [],
-    totalQuantity: 0,
-  },
+  value: initialState,
   actions: {
     addToCart: (newProduct) => {
       return (prevState) => {
@@ -14,7 +20,7 @@ export const cartSlice = createSlice({
         );
 
         if (foundIndex !== -1) {
-          const newState = prevState.cart.map((product, index) => {
+          const newCart = prevState.cart.map((product, index) => {
             if (index === foundIndex) {
               product.quantity += 1;
             }
@@ -22,12 +28,21 @@ export const cartSlice = createSlice({
             return product;
           });
 
-          return { cart: newState, totalQuantity: prevState.totalQuantity + 1 };
+          const newState = {
+            cart: newCart,
+            totalQuantity: prevState.totalQuantity + 1,
+          };
+          localStorage.setItem("cart", JSON.stringify(newState));
+
+          return newState;
         } else {
-          return {
+          const newState = {
             cart: [...prevState.cart, { ...newProduct, quantity: 1 }],
             totalQuantity: prevState.totalQuantity + 1,
           };
+          localStorage.setItem("cart", JSON.stringify(newState));
+
+          return newState;
         }
       };
     },

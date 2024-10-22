@@ -25,7 +25,7 @@ const { Header } = Layout;
 // ];
 
 export default function CustomHeader() {
-  const { totalQuantity } = useStore((state) => state.cart);
+  const cartList = useStore((state) => state.cart);
 
   const [favItems, setFavItems] = useState(0);
   const favList = useStore((state) => state.favourites);
@@ -89,7 +89,7 @@ export default function CustomHeader() {
         <Link to="/cart">
           <Button className="header-cart-btn">
             <ShoppingCartOutlined />
-            <p>{totalQuantity}</p>
+            <p>{cartList.totalQuantity ?? 0}</p>
           </Button>
         </Link>
         <Link to="/favourites">

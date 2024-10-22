@@ -1,8 +1,12 @@
 import { createSlice } from "zustand-slices";
 
+const initialState = localStorage.getItem("favs")
+  ? JSON.parse(localStorage.getItem("favs"))
+  : [];
+
 export const favouritesSlice = createSlice({
   name: "favourites",
-  value: [],
+  value: initialState,
   actions: {
     addToFavList: (newProduct) => {
       return (prevState) => {
@@ -13,7 +17,10 @@ export const favouritesSlice = createSlice({
         if (foundIndex !== -1) {
           return prevState;
         } else {
-          return [...prevState, newProduct];
+          const newState = [...prevState, newProduct];
+          localStorage.setItem("favs", JSON.stringify(newState));
+
+          return newState;
         }
       };
     },
@@ -24,7 +31,10 @@ export const favouritesSlice = createSlice({
           return prevState;
         }
 
-        return prevState.filter((product) => product.id !== id);
+        const newState = prevState.filter((product) => product.id !== id);
+        localStorage.setItem("favs", JSON.stringify(newState));
+
+        return newState;
       };
     },
   },
