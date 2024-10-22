@@ -44,11 +44,11 @@ export default function CustomHeader() {
         zIndex: 10,
       }}
     >
-      <a href="#">
+      <Link to="/">
         <div className="demo-logo">
           <img src="/logo.png" alt="Website logo" />
         </div>
-      </a>
+      </Link>
       <Menu
         theme="dark"
         mode="horizontal"
