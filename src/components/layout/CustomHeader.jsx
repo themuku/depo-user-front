@@ -1,6 +1,8 @@
-import React from "react";
-import { Layout, Menu } from "antd";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Button, Layout, Menu } from "antd";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { useStore } from "../../store";
 const { Header } = Layout;
 
 // const items = [
@@ -23,6 +25,15 @@ const { Header } = Layout;
 // ];
 
 export default function CustomHeader() {
+  const { totalQuantity } = useStore((state) => state.cart);
+
+  const [favItems, setFavItems] = useState(0);
+  const favList = useStore((state) => state.favourites);
+
+  useEffect(() => {
+    setFavItems(favList.length);
+  }, [favList]);
+
   return (
     <Header
       style={{
@@ -73,6 +84,20 @@ export default function CustomHeader() {
         >
           Products
         </NavLink>
+      </div>
+      <div className="actions">
+        <Link to="/cart">
+          <Button className="header-cart-btn">
+            <ShoppingCartOutlined />
+            <p>{totalQuantity}</p>
+          </Button>
+        </Link>
+        <Link to="/favourites">
+          <Button className="header-fav-btn">
+            <HeartOutlined />
+            <p>{favItems}</p>
+          </Button>
+        </Link>
       </div>
     </Header>
   );

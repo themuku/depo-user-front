@@ -4,22 +4,27 @@ export const favouritesSlice = createSlice({
   name: "favourites",
   value: [],
   actions: {
-    addToFavList: (id) => {
+    addToFavList: (newProduct) => {
       return (prevState) => {
-        if (prevState.includes(id)) {
-          return prevState;
-        }
+        const foundIndex = prevState.findIndex(
+          (product) => product.id === newProduct.id
+        );
 
-        return [...prevState, id];
+        if (foundIndex !== -1) {
+          return prevState;
+        } else {
+          return [...prevState, newProduct];
+        }
       };
     },
     removeFromFavList: (id) => {
       return (prevState) => {
-        if (!prevState.includes(id)) {
+        const foundIndex = prevState.findIndex((product) => product.id === id);
+        if (foundIndex === -1) {
           return prevState;
         }
 
-        return prevState.filter((prevId) => prevId !== id);
+        return prevState.filter((product) => product.id !== id);
       };
     },
   },

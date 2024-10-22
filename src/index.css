@@ -201,3 +201,44 @@ body {
     border-radius: 10px;
     color: black;
 }
+
+.actions {
+    margin-left: 60px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    a {
+        display: flex;
+        align-items: center;
+    }
+
+
+    button {
+        background-color: transparent;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        font-size: 24px;
+        position: relative;
+
+        p {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: rgb(255, 183, 0);
+            color: white;
+            font-size: 14px;
+            height: 24px;
+            width: 24px;
+            text-align: center;
+            border-radius: 24px;
+        }
+    }
+}
+
+button.fav-btn-active {
+    color: #2a77c0;
+    border-color: #2a77c0;
+}

@@ -2,6 +2,7 @@ import { Button, Card, Flex, FloatButton, Typography } from "antd";
 import { formatDescription } from "../../utils/format-description";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useStore } from "../../store";
+import { useEffect, useState } from "react";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -12,21 +13,36 @@ export default function ProductCard({
   isLoading,
   id,
 }) {
+  const [isFav, setIsFav] = useState(false);
+
   const favList = useStore((state) => state.favourites);
-  const { addToFavList, removeFromFavList } = useStore.getState();
+  const cartList = useStore((state) => state.cart);
+  const { addToFavList, removeFromFavList, addToCart, removeFromCart } =
+    useStore.getState();
+
+  useEffect(() => {
+    const foundIndex = favList.findIndex((product) => product.id === id);
+
+    if (foundIndex !== -1) setIsFav(true);
+    else setIsFav(false);
+  }, [favList]);
+
   const handleFavourites = () => {
-    console.log("Added to favourites");
-    addToFavList(id);
+    if (!isFav) {
+      addToFavList({ productName, description, price, id });
+    } else {
+      removeFromFavList(id);
+    }
   };
-  console.log(favList);
 
   const handleCart = () => {
-    console.log("Added to cart");
-    removeFromFavList(id);
+    addToCart({ productName, description, price, id });
+    // TODO: add toast success or error here
   };
 
   const CardActions = [
     <Button
+      className={`${isFav ? "fav-btn-active" : ""}`}
       shape="circle"
       onClick={handleFavourites}
       icon={<HeartOutlined />}

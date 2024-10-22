@@ -7,6 +7,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import Layout from "./CustomLayout";
 import ErrorPage from "./ErrorPage";
 import { productsLoader } from "./pages/ProductsPage";
+import CartPage from "./pages/CartPage";
+import FavouritesPage from "./pages/FavouritesPage";
 
 const router = createBrowserRouter([
   {
@@ -40,13 +42,17 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
+        path: "/favourites",
+        element: <FavouritesPage />,
+      },
     ],
   },
 ]);
-
-// absolute path
-// relative
-// dynamic params
 
 export default function App() {
   return <RouterProvider router={router} />;
