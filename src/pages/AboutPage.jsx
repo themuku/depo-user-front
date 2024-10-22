@@ -2,58 +2,23 @@ import { Button } from "antd";
 
 export default function AboutPage() {
   return (
-    <div style={{ height: "640px" }}>
-      <h1 style={{ marginLeft: "785px" }}>About Us</h1>
-      <hr
-        style={{
-          width: "120px",
-          marginLeft: "785px",
-          border: "2px solid #419d4c",
-        }}
-      />
-      <p style={{ marginTop: "30px", marginLeft: "630px", color: "#b6b6b6" }}>
-        On This Site You Can See Advertisements, Products, People's Opinions
-        ......
-      </p>
-      <h1 style={{ fontSize: "24px", marginLeft: "750px", marginTop: "150px" }}>
-        Welcome to the About section
-      </h1>
-      <div>
-        <img
-          style={{
-            height: "400px",
-            width: "500px",
-            marginLeft: "220px",
-            marginTop: "-100px",
-          }}
-          src="https://www.4pl.com.tr/wp-content/uploads/2019/09/dar_koridor_raf_sistemi_17.jpg"
-          alt=""
-        />
-      </div>
-      <div style={{ marginLeft: "750px", marginTop: "-300px" }}>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium,{" "}
-          <br />
-          perspiciatis, vitae, quos vel quae asperiores error obcaecati numquam{" "}
-          <br />
-          reprehenderit natus eum pariatur facilis molestiae! Non deserunt{" "}
-          <br />
-          explicabo ipsum reiciendis amet sed quisquam suscipit voluptate fuga{" "}
-          <br />
-          corporis in molestiae, eum maxime eos rerum eius, odio mollitia illo{" "}
-          <br />
-          facilis eligendi nemo ut!
+    <div className="about-container">
+      <h2 className="about-title">
+        <span className="Ab">AB</span>OUT ME
+      </h2>
+      <div className="about-content">
+        <img src="./mce-2.jpg" alt="Profile" className="profile-image" />
+        <p className="about-texts">
+          "Salam siz bizim depo saytimizin about hissesindesiniz bu saytda siz
+          bizim melumatlarimizi ala bilersiniz. <br /> Lorem ipsum dolor sit
+          amet consectetur, adipisicing elit. Dolor molestias facere explicabo!{" "}
+          <br /> architecto soluta inventore ea temporibus quos non ad modi
+          eaque."
         </p>
-        <Button
-          style={{
-            backgroundColor: "green",
-            color: "#ffff",
-            marginTop: "20px",
-          }}
-          variant="contained"
-        >
-          Contained
-        </Button>
+        <div className="about-footer">
+          <h3 className="about-name">MCE</h3>
+          <p className="about-description">MCE-2 ©2024 Created by JET</p>
+        </div>
       </div>
     </div>
   );
