@@ -15,30 +15,34 @@ export const cartSlice = createSlice({
   actions: {
     addToCart: (newProduct) => {
       return (prevState) => {
-        const foundIndex = prevState.cart.findIndex(
+        const currentState = {
+          cart: prevState.cart || [],
+          totalQuantity: prevState.totalQuantity || 0,
+        };
+
+        const foundIndex = currentState.cart.findIndex(
           (product) => product.id === newProduct.id
         );
 
         if (foundIndex !== -1) {
-          const newCart = prevState.cart.map((product, index) => {
+          const newCart = currentState.cart.map((product, index) => {
             if (index === foundIndex) {
-              product.quantity += 1;
+              return { ...product, quantity: product.quantity + 1 };
             }
-
             return product;
           });
 
           const newState = {
             cart: newCart,
-            totalQuantity: prevState.totalQuantity + 1,
+            totalQuantity: currentState.totalQuantity + 1,
           };
           localStorage.setItem("cart", JSON.stringify(newState));
 
           return newState;
         } else {
           const newState = {
-            cart: [...prevState.cart, { ...newProduct, quantity: 1 }],
-            totalQuantity: prevState.totalQuantity + 1,
+            cart: [...currentState.cart, { ...newProduct, quantity: 1 }],
+            totalQuantity: currentState.totalQuantity + 1,
           };
           localStorage.setItem("cart", JSON.stringify(newState));
 
@@ -48,7 +52,47 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (id) => {
       return (prevState) => {
-        // TODO: reduce quantity until 1 then remove from array
+        const currentState = {
+          cart: prevState.cart || [],
+          totalQuantity: prevState.totalQuantity || 0,
+        };
+
+        const foundIndex = currentState.cart.findIndex(
+          (product) => product.id === id
+        );
+
+        if (foundIndex !== -1) {
+          const product = currentState.cart[foundIndex];
+
+          if (product.quantity > 1) {
+            const newCart = currentState.cart.map((item, index) => {
+              if (index === foundIndex) {
+                return { ...item, quantity: item.quantity - 1 };
+              }
+              return item;
+            });
+
+            const newState = {
+              cart: newCart,
+              totalQuantity: currentState.totalQuantity - 1,
+            };
+            localStorage.setItem("cart", JSON.stringify(newState));
+
+            return newState;
+          } else {
+            const newCart = currentState.cart.filter((item) => item.id !== id);
+
+            const newState = {
+              cart: newCart,
+              totalQuantity: currentState.totalQuantity - 1,
+            };
+            localStorage.setItem("cart", JSON.stringify(newState));
+
+            return newState;
+          }
+        }
+
+        return currentState;
       };
     },
   },

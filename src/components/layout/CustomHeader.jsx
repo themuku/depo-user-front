@@ -89,7 +89,7 @@ export default function CustomHeader() {
         <Link to="/cart">
           <Button className="header-cart-btn">
             <ShoppingCartOutlined />
-            <p>{cartList.totalQuantity ?? 0}</p>
+            <p>{cartList?.totalQuantity ?? 0}</p>
           </Button>
         </Link>
         <Link to="/favourites">

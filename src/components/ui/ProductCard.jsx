@@ -1,8 +1,13 @@
 import { Button, Card, Flex, FloatButton, Typography } from "antd";
 import { formatDescription } from "../../utils/format-description";
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  ArrowRightOutlined,
+  HeartOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
 import { useStore } from "../../store";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 const { Text } = Typography;
 
@@ -19,6 +24,8 @@ export default function ProductCard({
   const cartList = useStore((state) => state.cart);
   const { addToFavList, removeFromFavList, addToCart, removeFromCart } =
     useStore.getState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const foundIndex = favList.findIndex((product) => product.id === id);
@@ -40,6 +47,10 @@ export default function ProductCard({
     // TODO: add toast success or error here
   };
 
+  const handleClick = () => {
+    navigate(`/products/${id}`);
+  };
+
   const CardActions = [
     <Button
       className={`${isFav ? "fav-btn-active" : ""}`}
@@ -51,6 +62,11 @@ export default function ProductCard({
       shape="circle"
       onClick={handleCart}
       icon={<ShoppingCartOutlined />}
+    />,
+    <Button
+      shape="circle"
+      icon={<ArrowRightOutlined />}
+      onClick={handleClick}
     />,
   ];
 

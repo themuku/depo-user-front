@@ -1,136 +1,135 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .links {
-    display: flex;
-    gap: 20px;
-    font-size: 24px;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  font-size: 24px;
+  align-items: center;
 }
 
 .link {
-    color: white;
+  color: white;
 }
 
 .active-link {
-    color: #69b1ff;
+  color: #69b1ff;
 }
 
 .active-link::after {
-    content: "";
-    display: block;
-    height: 2px;
-    border-radius: 2px;
-    background-color: #69b1ff;
-    width: 100%;
+  content: "";
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #69b1ff;
+  width: 100%;
 }
 
 .demo-logo {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 
-    img {
-        width: 100%;
-        height: 100%;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .carousel-slide-custom {
-    width: 100vw;
-    height: calc(100vh - 64px);
-    JET_SCHOOL_POSITION: relative;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  position: relative;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    &>img {
-        width: 100%;
-        filter: brightness(0.6);
-    }
+  & > img {
+    width: 100%;
+    filter: brightness(0.6);
+  }
 
-    &>.carousel-slide-title {
-        JET_SCHOOL_POSITION: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white
-    }
+  & > .carousel-slide-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
 }
 
 .product-price {
-    cursor: pointer;
-    margin-top: 10px;
-    display: inline-block;
-    font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 18px;
 }
 
 .featured-products-sections,
 .new-products-section,
 .testimonials,
 .newsletter-section {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .newsletter-section {
-    background-color: black;
+  background-color: black;
+  color: white;
+  padding: 30px;
+
+  h2 {
     color: white;
-    padding: 30px;
+  }
 
-    h2 {
-        color: white;
-    }
+  div {
+    max-width: 1536px;
+    margin-inline: auto;
+  }
 
-    div {
-        max-width: 1536px;
-        margin-inline: auto;
-    }
-
-    .newsletter-input {
-        max-width: 600px;
-    }
+  .newsletter-input {
+    max-width: 600px;
+  }
 }
 
 .all-products-link {
-    font-weight: 700;
-    font-size: 24px;
-    transition: all 300ms ease;
+  font-weight: 700;
+  font-size: 24px;
+  transition: all 300ms ease;
 }
 
 .all-products-link:hover {
-    color: #2a77c0;
+  color: #2a77c0;
 }
 
-
 .testimonials .slick-slide {
-    max-width: 600px;
+  max-width: 600px;
 }
 
 .testimonials .slick-list {
-    max-width: 600px;
-    overflow: hidden;
-    margin-inline: auto !important;
+  max-width: 600px;
+  overflow: hidden;
+  margin-inline: auto !important;
 }
 
 .testimonials .slick-arrow::after {
-    color: black;
-    width: 24px !important;
-    height: 24px !important;
+  color: black;
+  width: 24px !important;
+  height: 24px !important;
 }
 
 .testimonials .slick-dots {
-    bottom: -12px !important;
+  bottom: -12px !important;
 
-    li {
-        background-color: rgba(0, 0, 0, 0.153);
-        /* border: 1px solid rgba(0, 0, 0, 0.058); */
-        border-radius: 3px
-    }
+  li {
+    background-color: rgba(0, 0, 0, 0.153);
+    /* border: 1px solid rgba(0, 0, 0, 0.058); */
+    border-radius: 3px;
+  }
 }
 
 /* 
@@ -139,106 +138,106 @@ body {
     justify-content: space-between;
 } */
 .about-container {
-    text-align: center;
-    background-image: radial-gradient(transparent, rgb(0, 0, 0)), url('https://123svet.ru/uploadedFiles/images/logo/sklad1.jpg');
-    background-size: cover;
-    height: 100vh;
-    background-position: center;
+  text-align: center;
+  background-image: radial-gradient(transparent, rgb(0, 0, 0)),
+    url("https://123svet.ru/uploadedFiles/images/logo/sklad1.jpg");
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
 
-    color: white;
-    padding: 50px 20px;
-    position: relative;
-    text-align: center;
-    background-color: #333;
-    color: white;
+  color: white;
+  padding: 50px 20px;
+  position: relative;
+  text-align: center;
+  background-color: #333;
+  color: white;
 }
 
 .about-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    position: relative;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  position: relative;
 }
 
 .about-content {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
 }
 
 .profile-image {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin-bottom: 20px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
 }
 
 .about-texts {
-    font-style: italic;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    color: white;
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: white;
 }
 
 .about-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .about-description {
-    font-size: 1rem;
-    color: #aaa;
+  font-size: 1rem;
+  color: #aaa;
 }
 
 .Ab {
-    background-color: rgb(255, 183, 0);
-    border-radius: 10px;
-    color: black;
+  background-color: rgb(255, 183, 0);
+  border-radius: 10px;
+  color: black;
 }
 
 .actions {
-    margin-left: 60px;
+  margin-left: 60px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  a {
     display: flex;
-    gap: 20px;
     align-items: center;
+  }
 
-    a {
-        display: flex;
-        align-items: center;
+  button {
+    background-color: transparent;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 24px;
+    position: relative;
+
+    p {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: rgb(255, 183, 0);
+      color: white;
+      font-size: 14px;
+      height: 24px;
+      width: 24px;
+      text-align: center;
+      border-radius: 24px;
     }
-
-
-    button {
-        background-color: transparent;
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        font-size: 24px;
-        position: relative;
-
-        p {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background-color: rgb(255, 183, 0);
-            color: white;
-            font-size: 14px;
-            height: 24px;
-            width: 24px;
-            text-align: center;
-            border-radius: 24px;
-        }
-    }
+  }
 }
 
 button.fav-btn-active {
-    color: #2a77c0;
-    border-color: #2a77c0;
+  color: #2a77c0;
+  border-color: #2a77c0;
 }

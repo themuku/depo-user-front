@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import ProductsPage from "./pages/ProductsPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ProductDetailsPage, { detailsLoader } from "./pages/ProductDetailsPage";
 import Layout from "./CustomLayout";
 import ErrorPage from "./ErrorPage";
 import { productsLoader } from "./pages/ProductsPage";
@@ -37,8 +37,9 @@ const router = createBrowserRouter([
             loader: productsLoader,
           },
           {
-            path: ":productName",
+            path: ":productId",
             element: <ProductDetailsPage />,
+            loader: detailsLoader,
           },
         ],
       },
