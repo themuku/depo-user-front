@@ -6,11 +6,63 @@ import {
   SendOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import CustomInput from "../ui/CustomInput";
+
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+
 const { Option } = Select;
 const { Title } = Typography;
 
+const schema = yup.object({
+  fullName: yup.string().required(),
+  phoneNumber: yup.string().length(10).required(),
+  email: yup.string().email().required(),
+});
+
 export default function ContactForm() {
+  const { handleSubmit, control, formState, getValues, setValue, reset } =
+    useForm({
+      resolver: yupResolver(schema),
+    });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+
+    const formattedEmail = getValues("email") + mailDomain;
+    setValue("email", formattedEmail);
+
+    const formattedPhoneNumber = prefix + getValues("phoneNumber");
+    setValue("phoneNumber", formattedPhoneNumber);
+  }, [isSubmitted]);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-user`,
+        {
+          data,
+        }
+      );
+
+      if (response.status !== 201) {
+        console.log("Something went wrong");
+      }
+
+      console.log("Success", response.data);
+
+      reset();
+      setIsSubmitted(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const [prefix, setPrefix] = useState("099");
   const [mailDomain, setMailDomain] = useState("@gmail.com");
 
@@ -48,27 +100,45 @@ export default function ContactForm() {
       <Option value="@icloud.com">@icloud.com</Option>
     </Select>
   );
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Title level={4}>You can get information about us below</Title>
       <Flex vertical>
-        <Input placeholder="Your full name" prefix={<UserOutlined />} />
+        <CustomInput
+          control={control}
+          rules={{ required: true }}
+          name="fullName"
+          placeholder="Your full name"
+          prefix={<UserOutlined />}
+        />
         <Divider />
-        <Input
-          style={{
-            appearance: "",
-          }}
+        <CustomInput
+          onChange={(event) =>
+            setValue("phoneNumber", `${prefix}${event.target.value}`)
+          }
+          name="phoneNumber"
+          control={control}
+          rules={{ required: true }}
           prefix={<PhoneOutlined />}
           addonBefore={operatorPrefixes}
         />
         <Divider />
-        <Input
+        <CustomInput
+          onChange={(event) =>
+            setValue("email", `${event.target.value}${mailDomain}`)
+          }
+          rules={{ required: true }}
+          control={control}
+          name="email"
           placeholder="Your email"
           prefix={<MailOutlined />}
           addonAfter={mailDomains}
         />
         <Divider />
         <Button
+          onClick={() => setIsSubmitted(!isSubmitted)}
+          htmlType="submit"
           style={{
             marginTop: 70,
           }}

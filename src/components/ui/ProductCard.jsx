@@ -1,4 +1,4 @@
-import { Button, Card, Flex, FloatButton, Typography } from "antd";
+import { Button, Card, Typography } from "antd";
 import { formatDescription } from "../../utils/format-description";
 import {
   ArrowRightOutlined,
